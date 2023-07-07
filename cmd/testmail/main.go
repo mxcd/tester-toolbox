@@ -72,8 +72,8 @@ func initConfig() {
 
 		config.String("SMTP_HOST").NotEmpty().Default("localhost"),
 		config.Int("SMTP_PORT").Default(25),
-		config.String("SMTP_USERNAME").NotEmpty(),
-		config.String("SMTP_PASSWORD").NotEmpty().Sensitive(),
+		config.String("SMTP_USERNAME").Default(""),
+		config.String("SMTP_PASSWORD").Default("").Sensitive(),
 		config.Bool("SMTP_TLS").Default(true),
 		config.String("FROM_ADDRESS").NotEmpty(),
 		config.Int("PORT").Default(8080),
