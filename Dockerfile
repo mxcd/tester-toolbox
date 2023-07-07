@@ -17,4 +17,4 @@ FROM alpine:3.16 as application
 USER 1000
 WORKDIR /usr/app
 COPY --from=golang-build --chown=1000:1000 /usr/src/testmail /usr/bin/testmail
-ENTRYPOINT [ "/usr/bin/testmail serve" ]
+ENTRYPOINT [ "/usr/bin/testmail", "serve" ]
