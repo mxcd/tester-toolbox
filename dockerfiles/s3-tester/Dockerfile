@@ -1,22 +1,20 @@
-FROM 1.21-alpine3.18 AS build
+FROM golang:1.21-alpine3.18 as build
 
 WORKDIR /usr/src
+COPY go.mod /usr/src/go.mod
+COPY go.sum /usr/src/go.sum
+RUN go mod download
 
-COPY go.mod go.sum /usr/src/
-
+COPY cmd /usr/src/cmd
 COPY internal /usr/src/internal
-COPY vendor /usr/src/vendor
-COPY main.go /usr/src/main.go
 
-RUN CGO_ENABLED=0 go build -o /usr/src/s3-tester /usr/src/main.go
+WORKDIR /usr/src/cmd/s3-tester
+
+RUN go build -o /usr/src/s3-tester
 
 
 FROM alpine:3.18
-
+USER 1000
 WORKDIR /usr/app
-
-USER 1001:1001
-COPY --from=build --chown=1001:1001 /usr/src/s3-tester /usr/app/s3-tester
-
-
-ENTRYPOINT ["/usr/app/s3-tester"]
+COPY --from=build --chown=1000:1000 /usr/src/s3-tester /usr/bin/s3-tester
+ENTRYPOINT [ "/usr/bin/s3-tester", "serve" ]
