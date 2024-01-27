@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/mxcd/go-config/config"
-	"github.com/mxcd/testmail/internal/mail"
-	"github.com/mxcd/testmail/internal/server"
-	"github.com/mxcd/testmail/internal/util"
+	"github.com/mxcd/tester-toolbox/internal/mail"
+	"github.com/mxcd/tester-toolbox/internal/testmail_server"
+	"github.com/mxcd/tester-toolbox/internal/util"
 	"github.com/urfave/cli/v2"
 )
 
@@ -46,7 +46,7 @@ func main() {
 				Usage:       "testmail serve",
 				Description: "serve http server with /send/:address endpoint",
 				Action: func(c *cli.Context) error {
-					server.StartServer()
+					testmail_server.StartServer()
 					return nil
 				},
 			},

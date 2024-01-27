@@ -1,4 +1,4 @@
-package server
+package testmail_server
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/mxcd/go-config/config"
-	"github.com/mxcd/testmail/internal/mail"
+	"github.com/mxcd/tester-toolbox/internal/mail"
 	"github.com/rs/zerolog/log"
 )
 
