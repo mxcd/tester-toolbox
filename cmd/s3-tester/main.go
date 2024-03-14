@@ -97,7 +97,6 @@ func main() {
 			},
 			{
 				Name:    "url",
-				Aliases: []string{"u"},
 				Usage:   "Generates a pre-signed URL for the specified S3 object",
 				Action: func(c *cli.Context) error {
 					initLogger(c)
